@@ -18,21 +18,12 @@ class CallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ZegoUIKitPrebuiltCall(
-        appID: yourAppID /*input your AppID*/,
-        appSign: yourAppSign /*input your AppSign*/,
+        appID: 11 /*input your AppID*/,
+        appSign: "yourAppSign" /*input your AppSign*/,
         userID: localUserID,
         userName: "user_$localUserID",
         callID: callID,
         config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
-          ..onOnlySelfInRoom = (context) {
-            if (PrebuiltCallMiniOverlayPageState.idle !=
-                ZegoUIKitPrebuiltCallMiniOverlayMachine().state()) {
-              /// now is minimizing state, not need to navigate
-              ZegoUIKitPrebuiltCallMiniOverlayMachine().switchToIdle();
-            } else {
-              Navigator.of(context).pop();
-            }
-          }
 
           /// support minimizing
           ..topMenuBarConfig.isVisible = true
