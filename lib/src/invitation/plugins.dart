@@ -247,7 +247,7 @@ class ZegoCallPrebuiltPlugins {
     }
   }
 
-  void onNetworkModeChanged(ZegoNetworkMode networkMode) {
+  void onNetworkModeChanged(ZegoUIKitNetworkState networkMode) {
     ZegoLoggerService.logInfo(
       'onNetworkModeChanged $networkMode, previous '
       'network state: $networkState',
@@ -256,13 +256,16 @@ class ZegoCallPrebuiltPlugins {
     );
 
     switch (networkMode) {
-      case ZegoNetworkMode.Offline:
-      case ZegoNetworkMode.Unknown:
+      case ZegoUIKitNetworkState.offline:
         networkState = ZegoCallPluginNetworkState.offline;
         break;
-      case ZegoNetworkMode.Ethernet:
-      case ZegoNetworkMode.WiFi:
-      case ZegoNetworkMode.Mode2G:
+      case ZegoUIKitNetworkState.online:
+        networkState = ZegoCallPluginNetworkState.online;
+        break;
+      case ZegoUIKitNetworkState.unknown:
+        networkState = ZegoCallPluginNetworkState.unknown;
+        break;
+      /** case ZegoNetworkMode.Mode2G:
       case ZegoNetworkMode.Mode3G:
       case ZegoNetworkMode.Mode4G:
       case ZegoNetworkMode.Mode5G:
@@ -271,7 +274,7 @@ class ZegoCallPrebuiltPlugins {
         }
 
         networkState = ZegoCallPluginNetworkState.online;
-        break;
+        break; **/
     }
   }
 
